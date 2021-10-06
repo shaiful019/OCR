@@ -43,15 +43,7 @@ for i in range(0, nlabels - 1):
         img2[labels == i + 1] = 255
 
 res = cv2.bitwise_not(img2)
-mask= cv2.morphologyEx(res,cv2.MORPH_CLOSE,np.ones((20,40))) #this will connect letters together
-out = cv2.connectedComponentsWithStats(mask, 4, cv2.CV_32S) #count pixel in each blob
-bad = out[2][:,cv2.CC_STAT_AREA]<2000 #remove small blobs
-mask = np.zeros_like(res,dtype=np.uint8)
-for i in range(1,out[0]):
-    if not bad[i]:
-        mask[out[1] == i] = 1
-img_clean = res & mask
-plt.imsave("data/dst.png",1-img_clean,cmap='gray')
-# cv2.imwrite("data/dst.png", res)
+
+cv2.imwrite("data/dst.png", res)
 
 

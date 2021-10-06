@@ -3,7 +3,7 @@ import cv2
 import matplotlib.pyplot as plt
 
 
-img = (cv2.imread(r"res.png",-1)==0).astype(np.uint8)
+img = (cv2.imread(r"data/dst.png",-1)==0).astype(np.uint8)
 
 mask=cv2.morphologyEx(img,cv2.MORPH_CLOSE,np.ones((20,40))) #this will connect letters together
 out = cv2.connectedComponentsWithStats(mask, 4, cv2.CV_32S) #count pixel in each blob
